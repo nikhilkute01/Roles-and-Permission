@@ -52,7 +52,7 @@
                 @foreach ($value['group'] as $details)
                     <div class="col-md-4 permission-item">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox">
+                            <input class="form-check-input" value="{{$details['id']}}" name="permission_id[]" type="checkbox">
                             <label class="form-check-label">
                                 {{ $details['name'] }}
                             </label>

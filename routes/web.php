@@ -34,6 +34,7 @@ Route::group(['middleware'=>'adminuser'],function(){
     Route::post('role/update/{id}',[RoleController::class,'update']);
     Route::get('user',[DashboardController::class,'userview']);
     Route::get('category',[UserController::class,'category']);
+    Route::get('user/add',[DashboardController::class,'useradd']);
 });
 
 Route::get('logout',[AuthController::class,'logout'])->name('logout');

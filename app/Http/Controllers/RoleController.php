@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Rolemodel;
 use App\Models\permissionmodel;
+use App\Models\PermissionRoleModel;
 class RoleController extends Controller
 {
     public function list1(){
@@ -20,12 +21,16 @@ class RoleController extends Controller
         $save=new Rolemodel;
         $save->name=$request->name;
         $save->save();
+        PermissionRoleModel::createupdateRecord($request->permission_id,$save->id);
         return redirect('add')->with('success','Role added');
     }
 
-    public function edit($id){
-        $data=Rolemodel::get()->find($id);
-        return view('Role/edit')->with(compact('data'));
+    public function edit($id) {
+      
+        $data = Rolemodel::find($id);
+        $data2 = permissionmodel::getRecord();
+        $roleIds = PermissionRoleModel::getroleid($id)->pluck('id')->toArray(); // Assuming getroleid returns a collectio
+        return view('Role.edit', compact('data', 'data2', 'roleIds'));
     }
     public function update($id , Request $request){
         $role=Rolemodel::find($id);

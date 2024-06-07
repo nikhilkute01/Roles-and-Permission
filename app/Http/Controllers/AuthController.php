@@ -10,7 +10,6 @@ class AuthController extends Controller
 {
     public function login(Request $request){
       //  dd(Hash::make('1234567'));
-
         return view('login-page');
     }
 
@@ -22,7 +21,7 @@ class AuthController extends Controller
             return view('dashboard');
         }
         else{
-            return redirect()->back()->with('error','please enter current email and password');
+            return redirect()->back()->with('error','please enter correct  email and password');
         }
     }
 
@@ -30,4 +29,6 @@ class AuthController extends Controller
         Auth::logout();
         return redirect(url(''));
     }
+
+
 }
